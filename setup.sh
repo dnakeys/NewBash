@@ -5,23 +5,23 @@ RED='\033[31m'
 YELLOW='\033[33m'
 GREEN='\033[32m'
 
-# Check if the home directory and linuxtoolbox folder exist, create them if they don't
-LINUXTOOLBOXDIR="$HOME/linuxtoolbox"
+# Check if the home directory and bash config folder exist, create them if they don't
+bashrcDIR="$HOME/.bashrc.d"
 
-if [ ! -d "$LINUXTOOLBOXDIR" ]; then
-    echo "${YELLOW}Creating linuxtoolbox directory: $LINUXTOOLBOXDIR${RC}"
-    mkdir -p "$LINUXTOOLBOXDIR"
-    echo "${GREEN}linuxtoolbox directory created: $LINUXTOOLBOXDIR${RC}"
+if [ ! -d "$bashrcDIR" ]; then
+    echo "${YELLOW}Creating bash config directory: $bashrcDIR${RC}"
+    mkdir -p "$bashrcDIR"
+    echo "${GREEN}bash config directory created: $bashrcDIR${RC}"
 fi
 
-if [ -d "$LINUXTOOLBOXDIR/mybash" ]; then rm -rf "$LINUXTOOLBOXDIR/mybash"; fi
+if [ -d "$bashrcDIR/newbash" ]; then rm -rf "$bashrcDIR/newbash"; fi
 
-echo "${YELLOW}Cloning mybash repository into: $LINUXTOOLBOXDIR/mybash${RC}"
-git clone https://github.com/ChrisTitusTech/mybash "$LINUXTOOLBOXDIR/mybash"
+echo "${YELLOW}Cloning newbash repository into: $bashrcDIR/newbash${RC}"
+git clone https://github.com/dnakeys/newbash "$bashrcDIR/newbash"
 if [ $? -eq 0 ]; then
-    echo "${GREEN}Successfully cloned mybash repository${RC}"
+    echo "${GREEN}Successfully cloned newbash repository${RC}"
 else
-    echo "${RED}Failed to clone mybash repository${RC}"
+    echo "${RED}Failed to clone newbash repository${RC}"
     exit 1
 fi
 
@@ -31,7 +31,7 @@ SUDO_CMD=""
 SUGROUP=""
 GITPATH=""
 
-cd "$LINUXTOOLBOXDIR/mybash" || exit
+cd "$bashrcDIR/newbash" || exit
 
 command_exists() {
     command -v "$1" >/dev/null 2>&1
